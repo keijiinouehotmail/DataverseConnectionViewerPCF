@@ -6,9 +6,9 @@
 
 ![ConnectionViewerHero](./Images/ConnectionViewerHero.ja.png)
 
-- PCF = [Power Apps component framework](https://learn.microsoft.com/ja-jp/power-apps/developer/component-framework/overview) です。
+- PCF = [Power Apps component framework (外部サイト)](https://learn.microsoft.com/ja-jp/power-apps/developer/component-framework/overview) です。
 - 本 PCF コントロールは、モデル駆動型アプリのフォーム上でのみ動作します。キャンバス アプリでは動作しません。
-- 本 PCF コントロールは、 [React コントロール](https://learn.microsoft.com/ja-jp/power-apps/developer/component-framework/react-controls-platform-libraries) として開発されています。
+- 本 PCF コントロールは、 [React コントロール (外部サイト)](https://learn.microsoft.com/ja-jp/power-apps/developer/component-framework/react-controls-platform-libraries) として開発されています。
 - 上記の画像を含む、サンプルデモ モードで表示されるデータは架空のものであり、実在するものとは関係ありません。
 
 ## 機能と使い方
@@ -67,3 +67,9 @@
 ## ビルド方法
 
 こちら [ビルド方法](./Docs/HowToBuild.ja.md) をご覧ください。
+
+## 利用している外部ライブラリ
+
+- [https://github.com/microsoft/sample-app-aoai-chatGPT (外部サイト)](https://github.com/microsoft/sample-app-aoai-chatGPT)
+- [https://github.com/microsoft/fluentui-system-icons (外部サイト)](https://github.com/microsoft/fluentui-system-icons)
+- その他 `package.json` に記載しているもの

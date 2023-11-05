@@ -6,9 +6,9 @@ This PCF control provides a visual representation of the `connection` data store
 
 ![ConnectionViewerHero](./Images/ConnectionViewerHero.ja.png)
 
-- PCF = [Power Apps component framework](https://learn.microsoft.com/en-us/power-apps/developer/component-framework/overview)
+- PCF = [Power Apps component framework (external site)](https://learn.microsoft.com/en-us/power-apps/developer/component-framework/overview) 
 - This PCF control works only on forms in model-driven apps. It doesn't work with canvas apps.
-- This PCF control was developed as a [React control](https://learn.microsoft.com/en-us/power-apps/developer/component-framework/react-controls-platform-libraries).
+- This PCF control was developed as a [React control (external site)](https://learn.microsoft.com/en-us/power-apps/developer/component-framework/react-controls-platform-libraries).
 - The data displayed in the sample demo mode including the image above is fictitious and has nothing to do with real life.
 
 ## How to use
@@ -29,3 +29,11 @@ See [How to set up](./Docs/HowToSetUp.md).
 ## How to build
 
 See [How to build](./Docs/HowToBuild.md).
+
+## External libraries used
+
+- [https://github.com/microsoft/sample-app-aoai-chatGPT (external site)](https://github.com/microsoft/sample-app-aoai-chatGPT)
+- [https://github.com/microsoft/fluentui-system-icons (external site)](https://github.com/microsoft/fluentui-system-icons)
+- Other libraries listed in `package.json`
+
+

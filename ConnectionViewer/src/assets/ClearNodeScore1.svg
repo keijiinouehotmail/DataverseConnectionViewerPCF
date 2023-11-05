@@ -1,0 +1,10 @@
+<svg width='300' height='300' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'
+  xmlns:xlink='http://www.w3.org/1999/xlink'>
+  <rect x='4' y='12' width='70' height='70' stroke-width='7' stroke='black' fill='#0078d4' rx='6' />
+  <g transform='translate(24 47) rotate(0)'>
+    <path d='M0 0 L 66 0' stroke-width='20' stroke='black' fill='none' stroke-linecap='square'
+      stroke-linejoin='miter' stroke-dasharray="0.2 0.2" />
+    <path d='M0 0 L 66 0' stroke-width='14' stroke='white' fill='none' stroke-linecap='square'
+      stroke-linejoin='miter' \>
+  </g>
+</svg>

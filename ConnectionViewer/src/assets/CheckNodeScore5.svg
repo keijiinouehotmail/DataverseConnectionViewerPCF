@@ -1,0 +1,15 @@
+<svg width='300' height='300' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'>
+  <defs>
+    <linearGradient id='CV_Check_LG' gradientTransform='rotate(45)'>
+      <stop offset='0%' stop-color='#8DC8E8'></stop>
+      <stop offset='100%' stop-color='#CD98CF'></stop>
+    </linearGradient>
+  </defs>
+  <rect x='4' y='12' width='70' height='70' stroke-width='7' stroke='black' fill='#0078d4' rx='6' />
+  <g transform='translate(24 47) rotate(-45)'>
+    <path d='M0 0 L 0 22 L 66 22' stroke-width='20' stroke='white' fill='none' stroke-linecap='square'
+      stroke-linejoin='miter' />
+    <path d='M0 0 L 0 22 L 66 22' stroke-width='14' stroke='url(#CV_Check_LG)' fill='none'
+      stroke-linecap='square' stroke-linejoin='miter' \>
+  </g>
+</svg>

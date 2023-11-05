@@ -1,0 +1,158 @@
+div:has(> #CV_nonReactDiv) { 
+    pointer-events: none;
+    position: relative;
+}
+
+#CV_LegendTable span.entityLegend {
+    display: block;
+    height: 32px;
+    width: 32px;
+    float: left;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+#CV_LegendTable td.legendTD {
+    padding: 2px;
+    vertical-align: middle;
+}
+
+#CV_LegendTable img.cardImage {
+    width: 24px;
+    height: 24px;
+    margin-left: 4px;
+    margin-top: 4px;
+    user-select: none; /* Disable the default copy feature in Safari for iOS. */
+    -webkit-user-select: none; /* Disable the default copy feature in Safari for iOS. */
+    pointer-events: none; /* Disable the default copy feature in Safari for iOS. */
+}
+
+#CV_MyDragDropG line.centerMark {
+    stroke: #CCCCCC;
+    stroke-width: 2px;
+}
+
+#CV_MySVGLines line.connectionLine {
+    stroke: #D3D6DB;
+    stroke-width: 1px;
+}
+
+#CV_MySVGConnectionDescriptions rect.connectionMask {
+    fill: rgb(255,255, 255);
+    opacity: 1.0; /* Changed in the script. */
+}
+
+#CV_MySVGConnectionDescriptions text.connectionDescription {
+    font-family: "Meiryo UI", "MS UI Gothic", "MS Pゴシック";
+    font-size: 9pt;
+    fill: rgb(0,102,204);
+    stroke: none;
+    cursor: pointer;
+}
+
+#CV_MySVGConnectionRoles text.connectionRole1, #CV_MySVGConnectionRoles text.connectionRole2 {
+    font-family: "Meiryo UI", "MS UI Gothic", "MS Pゴシック";
+    font-size: 9pt;
+    cursor: default;
+}
+
+#CV_LegendDiv {
+    margin: 0px;
+    padding: 4px;
+    font-family: "Meiryo UI", "MS UI Gothic", "MS Pゴシック";
+    font-weight: 400;
+    font-size: 9pt;
+    line-height: normal;
+    right: 4px;
+    top: 4px;
+    position: absolute;
+    border-color: rgb(0,32,80);
+    border-style: none;
+    background: linear-gradient(135deg, #8DC8E8, #CD98CF);
+}
+
+#CV_MessageDiv {
+    font-family: "Meiryo UI", "MS UI Gothic", "MS Pゴシック";
+    font-size: 9pt;
+}
+
+#CV_LegendTable {
+    margin: 0px;
+    padding: 0px;
+    color: white;
+    text-shadow: 1px 1px 4px black;
+}
+
+#CV_LegendTable TD{
+    text-align: left;
+}
+
+#CV_MyPage {
+    background-color: #FFFFFF !important;
+    text-shadow: none !important;
+}
+
+#CV_nonReactDiv {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+}
+
+#CV_reactDiv {
+    height: 0px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    pointer-events: all;
+}
+
+#CV_MyPage {
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    touch-action: none;
+}
+
+#CV_MyCanvasToDrag {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+#CV_MyCardConnectionDiv {
+    pointer-events: none;
+    margin: 0px;
+    padding: 0px;
+    left: 0px;
+    top: 0px;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+#CV_MyConnectionMaskToClickDiv {
+    pointer-events: all;
+}
+
+#CV_MyCardDiv {
+    pointer-events: all
+}
+
+#CV_MessageDiv {
+    left: 88px;
+    top: 0px;
+    position: absolute;
+}
+
+#CV_MyShowOptions {
+    margin-top: 0px; top: 4px;
+}
+
+#CV_MySpinnerDiv {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 
+  The manifest for DataverseConnectionViewerPCF
+-->
+<manifest>
+  <control namespace="CV" constructor="ConnectionViewer" version="0.0.46"
+    display-name-key="ConnectionViewer_Display_Key" description-key="ConnectionViewer_Desc_Key"
+    control-type="virtual">
+    <external-service-usage enabled="false">
+    </external-service-usage>
+    <property name="fieldValue"
+      display-name-key="fieldValue"
+      description-key="fieldValue_desc"
+      of-type-group="kindOfText"
+      usage="bound"
+      required="true" />
+    <type-group name="kindOfText">
+      <type>SingleLine.Text</type>
+      <type>SingleLine.TextArea</type>
+      <type>Multiple</type>
+    </type-group>
+    <property name="entityId"
+      display-name-key="entityId"
+      description-key="entityId_desc"
+      of-type="SingleLine.Text"
+      usage="input"
+      required="true" />
+    <property name="entityName"
+      display-name-key="entityName"
+      description-key="entityName_desc"
+      of-type="SingleLine.Text"
+      usage="input"
+      required="true" />
+    <property name="height"
+      display-name-key="height"
+      description-key="height_desc"
+      of-type="Whole.None"
+      usage="input"
+      required="true"
+      default-value="600" />
+    <property name="configSet"
+      display-name-key="configSet"
+      description-key="configSet_desc"
+      of-type="Multiple"
+      usage="input"
+      required="false" />
+    <property name="demo"
+      display-name-key="demo"
+      description-key="demo_desc"
+      of-type="Whole.None"
+      usage="input"
+      required="false"
+      default-value="0" />
+    <property name="enableNodeScoring"
+      display-name-key="enableNodeScoring"
+      description-key="enableNodeScoring_desc"
+      of-type="Whole.None"
+      usage="input"
+      required="false"
+      default-value="1" />
+    <property name="AzureOpenAIAPIKey"
+      display-name-key="AzureOpenAIAPIKey"
+      description-key="AzureOpenAIAPIKey_desc"
+      of-type="SingleLine.Text"
+      usage="input"
+      required="false"
+      default-value="" />
+    <property name="AzureOpenAIAPIEndpointURL"
+      display-name-key="AzureOpenAIAPIEndpointURL"
+      description-key="AzureOpenAIAPIEndpointURL_desc"
+      of-type="SingleLine.Text"
+      usage="input"
+      required="false"
+      default-value="" />
+    <resources>
+      <code path="src/ConnectionViewer.ts" order="1" />
+      <css path="src/css/ConnectionViewer.css" order="1" />
+      <platform-library name="React" version="16.8.6" />
+      <platform-library name="Fluent" version="8.29.0" />
+      <resx path="src/strings/ConnectionViewer.1033.resx" version="1.0.0" />
+      <resx path="src/strings/ConnectionViewer.1041.resx" version="1.0.0" />
+    </resources>
+    <feature-usage>
+      <uses-feature name="WebAPI" required="true" />
+    </feature-usage>
+  </control>
+</manifest>

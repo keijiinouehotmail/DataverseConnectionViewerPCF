@@ -1,7 +1,8 @@
 import { ConnectionViewer } from "../ConnectionViewer";
 import { CardsLayout } from "../api/CardsLayout";
 import { DataverseRecord } from "../api/DataverseRecord";
-import { Demo_Const, SampleDemo_Data } from "../api/SampleDemo_Data";
+import { SampleDemo_Data } from "../api/SampleDemo_Data";
+import { SampleDemo_Const } from "../api/SampleDemo_Const";
 import { Helper } from "../api/Helper";
 import { WebAPIRecord } from "../api/WebAPIRecord";
 import { WebAPIHelper, WebAPI } from "./WebAPIHelper";
@@ -100,6 +101,9 @@ export class DataverseAccessWebAPI {
         this.asyncEMRetrievedEMDicEntitySetName = {};
 
         this.initRelationshipMetadataCacheExecutor = this.initRelationshipMetadataCacheExecutor.bind(this);
+        this.retrieveRMCacheExecutor = this.retrieveRMCacheExecutor.bind(this);
+        this.retrieveAnnotationRMCacheExecutor = this.retrieveAnnotationRMCacheExecutor.bind(this);
+        this.initDataverseRecordAccessExecutor = this.initDataverseRecordAccessExecutor.bind(this);
     }
     /**
     * Access first Dataverse.
@@ -212,7 +216,7 @@ export class DataverseAccessWebAPI {
                         if (0 <= relationship["@odata.type"].indexOf("OneToManyRelationshipMetadata")) {
                             const otmRelationship: WebAPI.OTMRelationshipInterface = relationship;
                             // Cache only if it is a relationship specified in the config.
-                            if (ConnectionViewer.cv.config.RelationshipSchemaNameList.some((schemaName) => otmRelationship.SchemaName === schemaName)){
+                            if (ConnectionViewer.cv.config.RelationshipSchemaNameList.some((schemaName) => otmRelationship.SchemaName === schemaName)) {
                                 DataverseAccessWebAPI.cv.dataverseAccess.asyncOTMRetrievedMetadataDicSchema[otmRelationship.SchemaName] = otmRelationship;
                                 if (entityList.indexOf(relationship.ReferencedEntity) < 0) entityList.push(relationship.ReferencedEntity);
                                 if (entityList.indexOf(relationship.ReferencingEntity) < 0) entityList.push(relationship.ReferencingEntity);
@@ -231,9 +235,9 @@ export class DataverseAccessWebAPI {
                     setTimeout(function () {
                         if (resolve)
                             resolve(entityList);
-                    }, Demo_Const.DataverseWebAPIDemoResponseTime);
+                    }, SampleDemo_Const.DataverseWebAPIDemoResponseTime);
                 } catch (error) {
-                    reject("This HTML file is not available in sample demo mode.");
+                    reject(`Error in retrieveRMCacheExecutor(): ${error}`);
                 }
             } else {
                 // Example: /RelationshipDefinitions?$filter=SchemaName eq 'contact_customer_accounts' or SchemaName eq 'account_parent_account' or SchemaName eq 'opportunitycompetitors_association'
@@ -297,7 +301,7 @@ export class DataverseAccessWebAPI {
 
             setTimeout(() => {
                 resolve(otmRelationship);
-            }, Demo_Const.DataverseWebAPIDemoResponseTime);
+            }, SampleDemo_Const.DataverseWebAPIDemoResponseTime);
         } else {
             // Example: /RelationshipDefinitions/Microsoft.Dynamics.CRM.OneToManyRelationshipMetadata?$filter=ReferencedEntity eq 'contact' and ReferencingEntity eq 'annotation' and ReferencingAttribute eq 'objectid'
             let uri = "/RelationshipDefinitions/Microsoft.Dynamics.CRM.OneToManyRelationshipMetadata?$filter=ReferencedEntity eq '";
@@ -351,7 +355,7 @@ export class DataverseAccessWebAPI {
 
                 setTimeout(function () {
                     resolve();
-                }, Demo_Const.DataverseWebAPIDemoResponseTime);
+                }, SampleDemo_Const.DataverseWebAPIDemoResponseTime);
             } else {
                 // Example: /EntityDefinitions?$select=LogicalName,EntitySetName,ObjectTypeCode,PrimaryIdAttribute,PrimaryImageAttribute,PrimaryNameAttribute,SchemaName,DisplayName&$filter=LogicalName eq 'contact' or LogicalName eq 'account'&$expand=Attributes($select=AttributeType,SchemaName,DisplayName,LogicalName,IsPrimaryId,IsPrimaryName;$filter=IsPrimaryId eq true or IsPrimaryName eq true or AttributeType eq Microsoft.Dynamics.CRM.AttributeTypeCode'Lookup' or AttributeType eq Microsoft.Dynamics.CRM.AttributeTypeCode'Customer' or AttributeType eq Microsoft.Dynamics.CRM.AttributeTypeCode'Uniqueidentifier')
                 let uri = "/EntityDefinitions?$select=LogicalName,EntitySetName,ObjectTypeCode,PrimaryIdAttribute,PrimaryImageAttribute,PrimaryNameAttribute,SchemaName,DisplayName&$filter=";
@@ -390,7 +394,7 @@ export class DataverseAccessWebAPI {
 
             setTimeout(function () {
                 resolve(webAPIRecord);
-            }, Demo_Const.DataverseWebAPIDemoResponseTime);
+            }, SampleDemo_Const.DataverseWebAPIDemoResponseTime);
         } else {
             let entityLogicalName = DataverseAccessWebAPI.cv.paramEntityLogicalName;
             let id = DataverseAccessWebAPI.cv.paramGuid;
@@ -502,7 +506,7 @@ export class DataverseAccessWebAPI {
                         .then(() => {
                             resolve();
                         });
-                }, Demo_Const.DataverseWebAPIDemoResponseTime);
+                }, SampleDemo_Const.DataverseWebAPIDemoResponseTime);
             } else {
                 // Example:
                 // <fetch version='1.0' output-format='xml-platform' mapping='logical' distinct='false'>
@@ -566,7 +570,7 @@ export class DataverseAccessWebAPI {
                             let webAPIRecord: WebAPIRecord | null = SampleDemo_Data.getConnectionTargetDataverseRecords(connectionRecord);
                             if (webAPIRecord) DataverseAccessWebAPI.cv.dataverseAccess.asyncRetrievedConnTargetDataverseRecordRetrievedEC.push(webAPIRecord);
                             resolve();
-                        }, Demo_Const.DataverseWebAPIDemoResponseTime);
+                        }, SampleDemo_Const.DataverseWebAPIDemoResponseTime);
                     } else {
                         // Unlike Sdk.Soap.js, in Web API, you cannot get the entity logical name on the record2id side. Instead, you can get the objectTypeCode.
                         // var entityLogicalName = connectionRecord.view().attributes["record2id"].value.Type;
@@ -670,7 +674,7 @@ export class DataverseAccessWebAPI {
                         setTimeout(function () {
                             // Not implemented in sample demo mode
                             resolve();
-                        }, Demo_Const.DataverseWebAPIDemoResponseTime);
+                        }, SampleDemo_Const.DataverseWebAPIDemoResponseTime);
                     } else {
                         // As in the Sdk.Soap.js era, it throws queries against intermediate entities.
                         //
@@ -755,7 +759,7 @@ export class DataverseAccessWebAPI {
             if (DataverseAccessWebAPI.cv.IS_DEMO_MODE) {
                 setTimeout(function () {
                     // Not implemented in sample demo mode
-                }, Demo_Const.DataverseWebAPIDemoResponseTime);
+                }, SampleDemo_Const.DataverseWebAPIDemoResponseTime);
             } else {
                 // Example: mtmrm. If Entity1LogicalName is "opportunity", mtmrm. If Entity2LogicalName is "competitor"
                 //      The entity set name for the entity "competitor" is "competitors"
@@ -874,7 +878,7 @@ export class DataverseAccessWebAPI {
                                 DataverseAccessWebAPI.cv.dataverseAccess.asyncRetrievedOTMRRetrievedECDic[otmrm.SchemaName].push(record);
                             }
                             resolve();
-                        }, Demo_Const.DataverseWebAPIDemoResponseTime);
+                        }, SampleDemo_Const.DataverseWebAPIDemoResponseTime);
                     } else {
                         if (dataverseRecord.EntityLogicalName == DataverseAccessWebAPI.cv.OneToManyRelationshipMetadataCache[otmrm.SchemaName].ReferencedEntity) {
                             // Example: Assuming dataverseRecord.EntityLogicalName is "account" and otmrm.SchemaName is "opportunity_parent_account", ReferencingEntityNavigationPropertyName is "parentaccountid"
@@ -1017,7 +1021,7 @@ export class DataverseAccessWebAPI {
                             }
 
                             resolve();
-                        }, Demo_Const.DataverseWebAPIDemoResponseTime);
+                        }, SampleDemo_Const.DataverseWebAPIDemoResponseTime);
                     } else {
                         if (dataverseRecord.EntityLogicalName == DataverseAccessWebAPI.cv.OneToManyRelationshipMetadataCache[mtorm.SchemaName].ReferencingEntity) {
                             // Example: Assuming dataverseRecord.EntityLogicalName is an "opportunity", mtorm. When SchemaName is "opportunity_parent_account", ReferencingEntityNavigationPropertyName is "parentaccountid".
@@ -1134,12 +1138,13 @@ export class DataverseAccessWebAPI {
     * If no arguments are passed, get and return the memo record group attached to the current main card.
     * If annotationId is passed as an argument, only one is retrieved and an array of 1 is returned.
     */
-    static retrieveAnnotationRecordForCardsLayoutPromise(annotationId: string | null): Promise<WebAPIRecord[]> {
+    retrieveAnnotationRecordForCardsLayoutPromise(annotationId: string | null): Promise<WebAPIRecord[]> {
         return new Promise<WebAPIRecord[]>((resolve, reject) => {
             if (DataverseAccessWebAPI.cv.IS_DEMO_MODE) {
                 setTimeout(() => {
-                    resolve(SampleDemo_Data.getAnnotationRecords());
-                }, Demo_Const.DataverseWebAPIDemoResponseTime);
+                    const annotationRecords = SampleDemo_Data.getAnnotationRecords();
+                    resolve(annotationRecords);
+                }, SampleDemo_Const.DataverseWebAPIDemoResponseTime);
             } else {
                 if (!annotationId) {
                     // If no arguments are passed, get and return the memo record group attached to the current main card.
@@ -1192,12 +1197,12 @@ export class DataverseAccessWebAPI {
         return new Promise<string>((resolve, reject) => {
             let odata_entityid: string;
 
-           /**
-            * annotation seems to have a special association, and you could not specify a related record when you created the record.
-            * Therefore two stages were implemented:
-            *   i. After creating an annotation record without association, click
-            *  ii. throw a request to re-associate only;
-            */
+            /**
+             * annotation seems to have a special association, and you could not specify a related record when you created the record.
+             * Therefore two stages were implemented:
+             *   i. After creating an annotation record without association, click
+             *  ii. throw a request to re-associate only;
+             */
             /*
              *  i.
              *  Example:
@@ -1253,11 +1258,11 @@ export class DataverseAccessWebAPI {
     }
     // Determine if it is an ignorable error message
     static IsIgnorableError(errorMessage: any) {
-       /**
-        * The following error occurs when handling connection record information for records for which you do not have access rights.
-        * This error is expected and should be ignored.
-        * "SecLib::AccessCheckEx failed. Returned hr = -2147187962, ObjectID: 0083f907-720f-e711-80e8-480fcff29761, OwnerId: d8a5171d-5f0f-e711-80e9-480fcff2c651, OwnerIdType: 8 and CallingUser: d8a5171d-5f0f-e711-80e9-480fcff2c651. ObjectTypeCode: 2, objectBusinessUnitId: ac52bd1e-5c0f-e711-80e8-480fcff29761, AccessRights: ReadAccess"
-        */
+        /**
+         * The following error occurs when handling connection record information for records for which you do not have access rights.
+         * This error is expected and should be ignored.
+         * "SecLib::AccessCheckEx failed. Returned hr = -2147187962, ObjectID: 0083f907-720f-e711-80e8-480fcff29761, OwnerId: d8a5171d-5f0f-e711-80e9-480fcff2c651, OwnerIdType: 8 and CallingUser: d8a5171d-5f0f-e711-80e9-480fcff2c651. ObjectTypeCode: 2, objectBusinessUnitId: ac52bd1e-5c0f-e711-80e8-480fcff29761, AccessRights: ReadAccess"
+         */
         return errorMessage.indexOf("SecLib::AccessCheckEx failed.") == 0 && 0 < errorMessage.indexOf("AccessRights: ReadAccess");
     }
 }

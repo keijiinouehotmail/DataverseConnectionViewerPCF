@@ -4,11 +4,11 @@ import { AzureOAIGPTStreamService } from "../services/AzureOAIGPTStreamService";
 
 export class GPTPromptEngineering {
   /**
-   * Target is name of records like "赤城 紀子" or "AR025を10台"
+   * Target is name of records like "Ryan Brim", "森山 三郎" or "AR025を10台"
    */
   /**
    * Get id from target and vertices.
-   * @param target Name of records like "赤城 紀子" or "AR025を10台"
+   * @param target Name of records like "Ryan Brim", "森山 三郎" or "AR025を10台"
    */
   static async getIdFromTargetAndVertices(
     aoaiGPTStreamService: AzureOAIGPTStreamService,

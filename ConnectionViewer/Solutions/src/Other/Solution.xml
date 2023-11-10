@@ -9,7 +9,7 @@
       <LocalizedName description="Dataverse Connection Viewer PCF" languagecode="1041" />
     </LocalizedNames>
     <Descriptions />
-    <Version>1.0.0.5</Version>
+    <Version>1.0.0.7</Version>
     <!-- Solution Package Type: Unmanaged(0)/Managed(1)/Both(2)-->
     <Managed>1</Managed>
     <Publisher>

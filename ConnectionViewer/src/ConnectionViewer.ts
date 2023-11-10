@@ -12,7 +12,6 @@ import { CardsLayoutManager } from "./api/CardsLayoutManager";
 import { Helper } from "./api/Helper";
 import { WebAPIRecord } from "./api/WebAPIRecord";
 import { CardControl } from "./api/CardControl";
-import { SampleDemo_Data } from "./api/SampleDemo_Data";
 import { IConnDescsContext } from "./components/ReactConnDescs";
 import { NonReactDiv } from "./api/NonReactDiv";
 import { DataverseIconsHelper } from "./api/DataverseIconsHelper";
@@ -21,6 +20,7 @@ import { DataverseAccessWebAPI } from "./services/DataverseAccessWebAPI";
 import { WebAPI } from "./services/WebAPIHelper";
 import { IInputs, IOutputs } from "../generated/ManifestTypes";
 import { StringHelper } from "./api/StringHelper";
+import { SampleDemo_Data_en } from "./api/SampleDemo_Data_en";
 
 // /**
 //  * The root class of DataverseConnectionViewerPCF.
@@ -205,6 +205,11 @@ export class ConnectionViewer implements ComponentFramework.StandardControl<IInp
      */
     stringHelper: StringHelper;
     /**
+     * Language ID to show. 1041 for Japanese, 1033 for English.
+     * Currently, all cases other than 1041 are set to 1033.
+     */
+    languageIdToShow: number;
+    /**
      * constructor() -> init() -> updateView()
      */
     constructor() {
@@ -228,20 +233,17 @@ export class ConnectionViewer implements ComponentFramework.StandardControl<IInp
         state: ComponentFramework.Dictionary
     ): void {
         // this.notifyOutputChanged = notifyOutputChanged;
-        // const fieldValue = context.parameters.fieldValue.raw as string;
-
         console.log("in init() of ConnectionViewer class");
 
         this._context = context;
         // In the new record creation screen, etc., it should be undefined.
-        if (!context.parameters.entityId.raw) {
-            return;
-        }
-
+        if (!context.parameters.entityId.raw) return;
+        // Currently, all cases other than 1041 (Japanese) are set to 1033 (English).
+        this.languageIdToShow = (context.userSettings.languageId === 1041) ? 1041 : 1033;
         this.stringHelper = new StringHelper(context.userSettings.languageId);
         this.IS_DEMO_MODE = context.parameters.demo.raw ? true : false;
-        this.paramGuid = (this.IS_DEMO_MODE) ? SampleDemo_Data.Guid : (context.parameters.entityId.raw as string).toLowerCase();
-        this.paramEntityLogicalName = (this.IS_DEMO_MODE) ? SampleDemo_Data.EntityLogicalName : (context.parameters.entityName.raw as string).toLowerCase();
+        this.paramGuid = (this.IS_DEMO_MODE) ? SampleDemo_Data_en.Guid : (context.parameters.entityId.raw as string).toLowerCase();
+        this.paramEntityLogicalName = (this.IS_DEMO_MODE) ? SampleDemo_Data_en.EntityLogicalName : (context.parameters.entityName.raw as string).toLowerCase();
         this.paramHeight = (context.parameters.height.raw) ? context.parameters.height.raw as number : ConnectionViewer.DEFAULT_HEIGHT;
         this.paramConfigSet = context.parameters.configSet?.raw! as string;
         this.paramEnableNodeScoring = context.parameters.enableNodeScoring.raw ? true : false;

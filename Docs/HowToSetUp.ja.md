@@ -2,7 +2,17 @@
 
 1. 本 PCF コントロールは、モデル駆動型アプリのフォーム上でのみ動作します。キャンバス アプリでは動作しません。
 1. このリポジトリの [Releases](https://github.com/keijiinouehotmail/DataverseConnectionViewerPCF/releases) にある最新のソリューションファイル (.zip) をダウンロードします。
-1. カスタマイズ権限を持つユーザーで <https://make.powerapps.com/> にて、適切な環境を選び、ソリューションファイルをインポートします。
+1. カスタマイズ権限を持つユーザーで [https://make.powerapps.com/ ↗️](https://make.powerapps.com/) にて、適切な環境を選び、ソリューションファイルをインポートします。
+    - もしここで、以下のようなエラーが表示される場合には、追加の設定をする必要があります。
+      ```text
+      Solution "Dataverse Connection Viewer PCF" failed to import: Import Solution Failed: CustomControl with name CV.ConnectionViewer failed to import with error: Webresource content size is too big.
+      ```
+    - [https://admin.powerplatform.microsoft.com/ ↗️](https://admin.powerplatform.microsoft.com/) を開きます。
+    - 左側ナビゲーションから "環境" をクリックし、対象の環境をクリックします。
+    - メニューから "設定" -> "電子メール" -> "電子メール設定" をクリックします。
+    - "添付ファイル": "添付ファイルの最大ファイル サイズ" を、既定の `5120` から `7000` 程度の大きさ変更します。
+    - ![MaximumFileSize](../Images/MaximumFileSize.ja.png)
+    - "保存" をクリックします。
 1. 任意のテーブル (例えば "取引先担当者") のフォームをカスタマイズする画面を表示します。
 1. メニューから "クラシックに切り替える" をクリックし、クラシックのフォーム エディタを表示します。
 1. そのフォームに、本 PCF コントロールを表示したい位置に、任意のテキスト型のフィールドを配置します。  
@@ -10,14 +20,15 @@
     - なお、プライマリ フィールドを配置してしまうと後でフォーム上から削除する際に苦労しますので、プライマリ フィールド以外のフィールドを配置することをお勧めします。
 1. そのフィールドをダブルクリックし、フィールド プロパティ ウィンドウを表示します。
 1. `コントロール` タブをクリックします。
-1. コントロールの追加をクリックし、"ConnectionViewer" を探して追加します。
+1. `コントロールの追加...` をクリックします。
+1. "ConnectionViewer" を探して追加します。
 1. その "ConnectionViewer" の以下のプロパティ群を設定します。
     - Entity Id
-      - 以下の図のように、"フィールドの値にバインド" をクリックした上で、対象となるテーブルの一意識別子となる列を選択します。
+      - 以下の図のように、"フィールドの値にバインド" をクリックした上で、対象となるテーブルの一意識別子となるフィールドを選択します。
       - ![contactid](../Images/contactid.ja.png)
-      - 例えば、 "取引先担当者" テーブルの場合には `contactid` 列を選択します。
+      - 例えば、 "取引先担当者" テーブルの場合には `contactid` フィールドを選択します。
     - Entity Name
-      - 以下の図のように、"フィールドの値にバインド" をクリックした上で、 `entitylogicalname` を選択します
+      - 以下の図のように、"フィールドの値にバインド" をクリックした上で、 `entitylogicalname` フィールドを選択します
       - ![entitylogicalname](../Images/entitylogicalname.ja.png)
     - Height (px)
       - 本 PCF コントロールがフォーム上で表示される領域の高さをピクセル単位で指定します。
@@ -83,9 +94,9 @@
           - つながりビューワーで表示する `つながり` あるいは `接続` レコードの対象となるテーブルの論理名を保持する配列を設定します。
         - "RelationshipSchemaNameList"
           - つながりビューワーで表示する `1:N関連付け`、`N:1関連付け` あるいは `N:N関連付け` レコードの対象となる関連付けのスキーマ名を持つ配列を設定します。
-        - ※	要素の追加、削除の際にはコンマ「,」の有無にご注意ください。
-        - ※	関連付けのスキーマ名を確認するには、 Metadata Tools を利用すると簡単です。
-          - <https://learn.microsoft.com/en-us/power-apps/developer/data-platform/browse-your-metadata>
+        - ⚠️ 要素の追加、削除の際にはコンマ「,」の有無にご注意ください。
+        - ⚠️ 関連付けのスキーマ名を確認するには、 Metadata Tools を利用すると簡単です。
+          - [https://learn.microsoft.com/en-us/power-apps/developer/data-platform/browse-your-metadata ↗️](https://learn.microsoft.com/en-us/power-apps/developer/data-platform/browse-your-metadata)
     - Standalone Demo
       - サンプルデモ モードを利用するか否かを設定します。
       - 本 PCF コントロールにハードコードされたサンプルデータを使って、つながりビューワーを利用する場合には `1` を、そうではなく Dataverse に格納されている実際のデータを使って利用する場合には `0` を設定します。
@@ -102,10 +113,10 @@
         ```
       - 前述の Azure OpenAI API Key を指定している場合に有効な設定です。
 1. すべてのプロパティの設定が済んだら、 `ConnectionViewer` コントロール について、以下の図のように Web 電話 タブレット のチェックボックスをオンにします。
-  - ![webphonetablet](../Images/webphonetablet.ja.png)
+    - ![webphonetablet](../Images/webphonetablet.ja.png)
 1. フィールド プロパティ ウィンドウ の `表示` タブをクリックし、 `フォーム上でラベルを表示する` チェックボックスをオフにします。
-  - ![DisplayLabelOnTheFormOff](../Images/DisplayLabelOnTheFormOff.ja.png)
-  - なお、この設定は任意です。
+    - ![DisplayLabelOnTheFormOff](../Images/DisplayLabelOnTheFormOff.ja.png)
+    - なお、この設定は任意です。
 1. フィールド プロパティ ウィンドウで `OK` をクリックして閉じます。
 1. フォーム エディタにて、`保存` をクリックし、 `公開` をクリックして公開します。
 

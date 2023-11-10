@@ -8,10 +8,13 @@
   ```bash
   dotnet build
   ```
-- リリース時の BUild は、以下を実行することで、 `Solutions.zip` のファイルサイズが小さくなる。 (ある実績では、815KB -> 522KB)
+  この方法で Build されたファイルは、`ConnectionViewer/Solutions/bin/Debug` フォルダに `Solutions.zip` ファイルとして出力される。  
+- リリース時の Build は、以下を実行することで、 `Solutions.zip` のファイルサイズが小さくなる。 (ある実績では、815KB -> 522KB)
   ```bash
   dotnet build /p:configuration=Release
   ```
+  この方法で Build されたファイルは、`ConnectionViewer/Solutions/bin/Release` フォルダに `Solutions.zip` ファイルとして出力される。  
+  なお、本リポジトリの Releases ページに公開しているファイルはこの方法でビルドしたファイルを `DataverseConnectionViewerPCF_vx.x.x.x.zip` のようにリネームしたものである。
 
 ## 開発環境の一例
 

@@ -61,7 +61,7 @@ For example, the following edge shows the connection between "港コンピュー
   },
   "connection": [
     {
-      "description": "2014年3月まで",
+      "description": "2021年3月まで",
       "vertex1roleName": "以前の勤務先",
       "vertex2roleName": "以前の社員"
     }

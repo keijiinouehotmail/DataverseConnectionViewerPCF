@@ -6,9 +6,9 @@
 
 ![ConnectionViewerHero](./Images/ConnectionViewerHero.ja.png)
 
-- PCF = [Power Apps component framework (外部サイト)](https://learn.microsoft.com/ja-jp/power-apps/developer/component-framework/overview) です。
+- PCF = [Power Apps component framework ↗️](https://learn.microsoft.com/ja-jp/power-apps/developer/component-framework/overview) です。
 - 本 PCF コントロールは、モデル駆動型アプリのフォーム上でのみ動作します。キャンバス アプリでは動作しません。
-- 本 PCF コントロールは、 [React コントロール (外部サイト)](https://learn.microsoft.com/ja-jp/power-apps/developer/component-framework/react-controls-platform-libraries) として開発されています。
+- 本 PCF コントロールは、 [React コントロール ↗️](https://learn.microsoft.com/ja-jp/power-apps/developer/component-framework/react-controls-platform-libraries) として開発されています。
 - 上記の画像を含む、サンプルデモ モードで表示されるデータは架空のものであり、実在するものとは関係ありません。
 
 ## 機能と使い方
@@ -22,10 +22,10 @@
   - ![NodeScoringUI](./Images/NodeScoringUI.ja.png)
   - その状態で同領域をホバーすると、マウスアイコンが ![ClearNodeScore](./ConnectionViewer/src/assets/ClearNodeScore32x32.png) に変わり、クリックすると UI が解除されます。
   - この機能は、セットアップ方法に記載のある `Enable Node Scoring` が有効になっている場合に利用できます。
-  - この機能をノードスコアリング機能と呼びます。
+  - この機能を "ノードスコアリング" 機能と呼びます。
 - ギア アイコン ![GearIcon](./Images/GearIcon.png) をクリックすると、オプションの設定ができます。
   - `コンフィグ`
-    - セットアップ方法で記載している `Config Set` の中から、利用するコンフィグを選択します。
+    - [セットアップ方法](#セットアップ方法) で記載している `Config Set` の中から、利用するコンフィグを選択します。
   - `カードレイアウト`
     - 現在展開済みのカードレイアウトを保存したり、保存済のカードレイアウトを読み込んだりできます。
   - `リセット`
@@ -50,8 +50,15 @@
         - ![describe_connections_before](./Images/describe_connections_before.ja.png)
       - チャット後
         - ![describe_connections_after](./Images/describe_connections_after.ja.png)
-  - この機能を利用するには、セットアップ方法にて記載のある `Azure OpenAI API Key` および `Azure OpenAI API Endpoint URL` を設定する必要があります。
+  - この機能を利用するには、 [セットアップ方法](#セットアップ方法) にて記載のある `Azure OpenAI API Key` および `Azure OpenAI API Endpoint URL` を設定する必要があります。
 - カード中央の名称をクリックすると、そのレコードの詳細を表示するフォームが開きます。  
+
+### 対応言語
+
+- Dataverse を利用するユーザーとして設定している表示言語としては、 Dataverse がサポートしている言語であれば、どの言語でも利用できるはずです。
+- 一方で、この PCF コントロールの UI 上のラベルで対応しているとしては、以下の言語に対応しています。
+  - 英語 (既定)
+  - 日本語
 
 ### 注意点
 
@@ -70,6 +77,6 @@
 
 ## 利用している外部ライブラリ
 
-- [https://github.com/microsoft/sample-app-aoai-chatGPT (外部サイト)](https://github.com/microsoft/sample-app-aoai-chatGPT)
-- [https://github.com/microsoft/fluentui-system-icons (外部サイト)](https://github.com/microsoft/fluentui-system-icons)
+- [https://github.com/microsoft/sample-app-aoai-chatGPT ↗️](https://github.com/microsoft/sample-app-aoai-chatGPT)
+- [https://github.com/microsoft/fluentui-system-icons ↗️](https://github.com/microsoft/fluentui-system-icons)
 - その他 `package.json` に記載しているもの

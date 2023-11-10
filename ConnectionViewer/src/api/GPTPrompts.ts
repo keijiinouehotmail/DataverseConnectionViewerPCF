@@ -18,8 +18,8 @@ export class GPTPrompts {
         /**
          * analyze_impact_of_connections
          * Expected prompt: 
-         *   - Analyze the strength of the influence of people and companies related to Saburo Moriyama.
-         *   - I would like to propose a product to Noriko Akagi. How strong are the people around you involved in her? Analyze.
+         *   - Analyze the strength of the influence of people and companies related to Ryan Brim.
+         *   - I would like to propose a product to Jennifer Rivas. How strong are the people around you involved in her? Analyze.
          *   - Analyze how influential "10 units of AR025" are from the information of the connection.
          *   - 森山三郎と関係している人物や会社の影響の強さを分析してください。
          *   - 赤城 紀子さんに商品を提案したいです。周りの方々がどのような強さで彼女に関与していますか？分析してください。
@@ -43,8 +43,8 @@ export class GPTPrompts {
         /**
          * describe_connections
          * Expected prompt: 
-         *   - Tell us about the people and companies associated with Saburo Moriyama
-         *   - I would like to propose a product to Noriko Akagi. What information has with her and what connection?
+         *   - Tell me about the people and companies associated with Ryan Brim
+         *   - I would like to propose a product to Jennifer Rivas. What information has with her and what connection?
          *   - What is the connection to "10 units of AR025"?
          *   - 森山三郎と関係している人物や会社を教えて
          *   - 赤城 紀子さんに商品を提案したいです。彼女にはどのような方々からどのようなつながりを持っていますか？
@@ -68,9 +68,9 @@ export class GPTPrompts {
         /**
          * expand_the_card_to_a_certain_distance
          * Expected prompt:
-         *   - Expand two cards from Saburo Moriyama
-         *   - Expand two records related to Saburo Moriyama
-         *   - Expand the card from Saburo Moriyama
+         *   - Expand two cards from Ryan Brim
+         *   - Expand two records related to Ryan Brim
+         *   - Expand the card from Ryan Brim
          *   - Expand three records related to Ken Kajisa
          *   - 森山 三郎からカードを2つ展開して
          *   - 森山 三郎から関係するレコードを2つ展開して

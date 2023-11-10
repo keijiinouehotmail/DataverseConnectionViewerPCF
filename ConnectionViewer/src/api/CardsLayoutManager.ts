@@ -98,7 +98,7 @@ export class CardsLayoutManager {
     */
     LoadCardsLayoutListPromise(): Promise<CardsLayout[]> {
         return new Promise<CardsLayout[]>((resolve, reject) => {
-            DataverseAccessWebAPI.retrieveAnnotationRecordForCardsLayoutPromise(null)
+            ConnectionViewer.cv.dataverseAccess.retrieveAnnotationRecordForCardsLayoutPromise(null)
                 .then((records: WebAPIRecord[]) => {
                     const cardsLayoutList: CardsLayout[] = [];
 
@@ -123,7 +123,7 @@ export class CardsLayoutManager {
         return new Promise<{ record: WebAPIRecord; existCardLayout: boolean }>((resolve, reject) => {
             if (annotationId) {
                 // Get card layout data from Dataverse
-                DataverseAccessWebAPI.retrieveAnnotationRecordForCardsLayoutPromise(annotationId)
+                ConnectionViewer.cv.dataverseAccess.retrieveAnnotationRecordForCardsLayoutPromise(annotationId)
                     .then((annotationWebAPIRecords) => {
                         const annotationWebAPIRecord = annotationWebAPIRecords[0] // There shoul be only record.
                         const cardsLayout = CardsLayout.getCardsLayoutFromAnnotationWebAPIRecord(annotationWebAPIRecord);

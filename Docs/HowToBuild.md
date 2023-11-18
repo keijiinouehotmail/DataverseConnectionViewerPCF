@@ -18,6 +18,14 @@
 
 ## Example of development environment
 
+You can use the Dev Container, or refer to the following Example of a development environment.
+
+### Dev Container
+
+- This repository contains the configuration file `.devcontainer/devcontainer.json` for developing with Visual Studio Code's Dev Container.
+
+### Example of a development environment
+
 - Ubuntu-22.04 on Windows 11 WSL
 - Node.js v18.16.0
 - .NET SDK 7.0.400

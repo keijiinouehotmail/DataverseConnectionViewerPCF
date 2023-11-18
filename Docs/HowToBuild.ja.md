@@ -16,7 +16,15 @@
   この方法で Build されたファイルは、`ConnectionViewer/Solutions/bin/Release` フォルダに `Solutions.zip` ファイルとして出力される。  
   なお、本リポジトリの Releases ページに公開しているファイルはこの方法でビルドしたファイルを `DataverseConnectionViewerPCF_vx.x.x.x.zip` のようにリネームしたものである。
 
-## 開発環境の一例
+## 開発環境
+
+Dev Container を利用するか、以下の 開発環境の一例 を参考にしてください。
+
+### Dev Container
+
+- 本リポジトリには、Visual Studio Code の Dev Container で開発するための設定ファイル `.devcontainer/devcontainer.json` が含まれています。
+
+### 開発環境の一例
 
 - Ubuntu-22.04 on Windows 11 WSL
 - Node.js v18.16.0

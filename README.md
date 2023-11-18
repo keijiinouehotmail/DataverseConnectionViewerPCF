@@ -60,7 +60,7 @@ This PCF control provides a visual representation of the `connection` data store
   - English (default)
   - Japanese
 
-### Attention
+### Miscellaneous
 
 - It is assumed that the user will operate the mouse on a PC as a device. Touch interactions have not been tested.
 - The card layout feature is available when "Notes (or annotation) (including attachments)" is turned on in the properties of the target entity.

@@ -30,3 +30,4 @@ Dev Container を利用するか、以下の 開発環境の一例 を参考に�
 - Node.js v18.16.0
 - .NET SDK 7.0.400
 - Visual Studio Code 1.84.0
+- Visual Studio Code Extension: Power Platform Tools v2.0.21

@@ -30,3 +30,4 @@ You can use the Dev Container, or refer to the following Example of a developmen
 - Node.js v18.16.0
 - .NET SDK 7.0.400
 - Visual Studio Code 1.84.0
+- Visual Studio Code Extension: Power Platform Tools v2.0.21

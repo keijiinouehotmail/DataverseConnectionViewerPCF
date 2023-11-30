@@ -3,7 +3,7 @@
 ## コマンド
 
 - 基本的なビルド方法は以下を参照ください。
-  - <https://learn.microsoft.com/ja-jp/power-apps/developer/component-framework/implementing-controls-using-typescript>
+  - [最初のコンポーネントを作成する ↗️](https://learn.microsoft.com/ja-jp/power-apps/developer/component-framework/implementing-controls-using-typescript)
 - 開発時の Build は `ConnectionViewer/Solutions` フォルダにて以下を実行する。
   ```bash
   dotnet build

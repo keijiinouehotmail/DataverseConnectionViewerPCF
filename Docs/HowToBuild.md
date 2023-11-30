@@ -3,7 +3,7 @@
 ## Commands
 
 - See the following for basic build instructions.
-  - <https://docs.microsoft.com/en-us/powerapps/developer/component-framework/implementing-controls-using-typescript>
+  - [Create your first component ↗️](https://docs.microsoft.com/en-us/powerapps/developer/component-framework/implementing-controls-using-typescript)
 - Build during development is done by the following in the `ConnectionViewer/Solutions` folder.
   ```bash
   dotnet build

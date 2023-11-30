@@ -16,7 +16,7 @@
   The files built in this way are output as the `Solutions.zip` file in the `ConnectionViewer/Solutions/bin/Release` folder.
   The files published on the Releases page of this repository are renamed versions of these files, such as `DataverseConnectionViewerPCF_vx.x.x.x.zip`.
 
-## Example of development environment
+## Development environment
 
 You can use the Dev Container, or refer to the following Example of a development environment.
 

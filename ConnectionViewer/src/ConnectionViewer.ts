@@ -233,7 +233,7 @@ export class ConnectionViewer implements ComponentFramework.StandardControl<IInp
         state: ComponentFramework.Dictionary
     ): void {
         // this.notifyOutputChanged = notifyOutputChanged;
-        // console.log("in init() of ConnectionViewer class v1.0.1.1");
+        // console.log("in init() of ConnectionViewer class v1.0.1.8");
 
         this._context = context;
         // In the new record creation screen, etc., it should be undefined.
@@ -552,7 +552,7 @@ export class ConnectionViewer implements ComponentFramework.StandardControl<IInp
         , connectionTargetDataverseEntities: WebAPIRecord[]
         , oneToManyRelationshipEntitiesDic: { [key: string]: WebAPIRecord[] } | null
         , manyToOneRelationshipEntitiesDic: { [key: string]: WebAPIRecord[] } | null
-        , manyToManyRelationshipEntitiesDic: { [key: string]: WebAPIRecord[] } | null
+        , manyToManyRelationshipEntitiesDic: { [key: string]: WebAPIRecord[] } | null // TODO: This arg is not used
         , manyToManyRelationshipTargetDataverseEntitiesDic: { [key: string]: WebAPIRecord[] }): void {
         try {
             let listToBeAddedByConnectionEntities: DataverseLink[] = DataverseLink.ConvertConnectionEntitiesToDataverseLinkList(

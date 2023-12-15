@@ -818,12 +818,11 @@ export class DataverseAccessWebAPI {
                     WebAPIHelper.request("GET", uri, null, true, DataverseAccessWebAPI.MaxPageSize, DataverseAccessWebAPI.WebAPIVersion)
                         .then((request) => {
                             // Multiple records are returned
-                            let recordArray: WebAPIRecord[] = WebAPIRecord.CreateWebAPIRecordMultiple(JSON.parse(request.response));
-                            for (let i in recordArray) {
-                                let record = recordArray[i];
-                                let _id = record.getId(DataverseAccessWebAPI.cv);
+                            const recordArray: WebAPIRecord[] = WebAPIRecord.CreateWebAPIRecordMultiple(JSON.parse(request.response));
+                            for (const record of recordArray) {
+                                const _id = record.getId(DataverseAccessWebAPI.cv);
                                 if (_id) {
-                                    let interEntId = intersectEntityId[_id];
+                                    const interEntId = intersectEntityId[_id];
                                     if (!DataverseAccessWebAPI.cv.dataverseAccess.asyncRetrievedMTMRTargetDataverseRecordRetrievedECDic[interEntId]) {
                                         DataverseAccessWebAPI.cv.dataverseAccess.asyncRetrievedMTMRTargetDataverseRecordRetrievedECDic[interEntId] = [];
                                     }

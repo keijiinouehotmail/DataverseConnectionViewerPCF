@@ -271,11 +271,9 @@ export class DataverseLink {
         const list: DataverseLink[] = [];
 
         if (manyToManyRelationshipTargetDataverseEntitiesDic != null) {
-            for (let k in manyToManyRelationshipTargetDataverseEntitiesDic) {
-                const targetDataverseEntities: WebAPIRecord[] = manyToManyRelationshipTargetDataverseEntitiesDic[k];
-                for (let i = 0; i < targetDataverseEntities.length; i++) {
-                    const targetEntity: WebAPIRecord = targetDataverseEntities[i];
-
+            for (const m2mrecordID in manyToManyRelationshipTargetDataverseEntitiesDic) {
+                const targetDataverseEntities: WebAPIRecord[] = manyToManyRelationshipTargetDataverseEntitiesDic[m2mrecordID];
+                for (const targetEntity of targetDataverseEntities) {
                     const entityLogicalName1 = sourceDataverseRecord.EntityLogicalName;
                     const entityLogicalName2 = targetEntity.getEntityLogicalName(ConnectionViewer.cv);
 
@@ -296,7 +294,7 @@ export class DataverseLink {
                         const primaryImageAttributeName2 = entityMetadataCacheEntityLogicalName[entityLogicalName2].PrimaryImageAttribute;
 
                         const _id = targetEntity.getId(ConnectionViewer.cv);
-                        if (!_id) return [];
+                        if (!_id || _id === sourceDataverseRecord.Id) continue;
                         else {
                             const record2 = new DataverseRecord(
                                 _id
@@ -309,7 +307,7 @@ export class DataverseLink {
                             );
 
                             const con = new DataverseLink(
-                                k
+                                m2mrecordID
                                 , record1
                                 , record2
                                 , record1.DisplayName
@@ -323,7 +321,7 @@ export class DataverseLink {
                                 , DataverseLinkTypeEnum.ManyToMany
                                 , null // null, because it is ManyToMany relationship
                             );
-
+                            
                             list.push(con);
                         }
                     }

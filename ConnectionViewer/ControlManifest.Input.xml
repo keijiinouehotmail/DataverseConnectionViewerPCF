@@ -3,7 +3,7 @@
   The manifest for DataverseConnectionViewerPCF
 -->
 <manifest>
-  <control namespace="CV" constructor="ConnectionViewer" version="1.0.0"
+  <control namespace="CV" constructor="ConnectionViewer" version="1.0.1"
     display-name-key="ConnectionViewer_Display_Key" description-key="ConnectionViewer_Desc_Key"
     control-type="virtual">
     <external-service-usage enabled="false">

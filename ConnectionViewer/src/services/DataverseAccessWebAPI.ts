@@ -697,17 +697,25 @@ export class DataverseAccessWebAPI {
                         //        ->1: Object
                         //        ->2: Object
                         //
+                        // First, getting intersect record
                         let entityLogicalName = mtmrm.IntersectEntityName; // "opportunitycompetitors_association"
                         let entitySetName = DataverseAccessWebAPI.cv.EntityMetadataCacheKeyIsEntityLogicalName[entityLogicalName].EntitySetName; // "opportunitycompetitorscollection"
-                        let primaryIdAttributeName = DataverseAccessWebAPI.cv.EntityMetadataCacheKeyIsEntityLogicalName[dataverseRecord.EntityLogicalName].PrimaryIdAttribute; // "opportunityid"
                         let referencedId = dataverseRecord.Id; // "4883f907-720f-e711-80e8-480fcff29761"
 
                         // Create a string for $select
                         let uri = "/" + entitySetName;
-
-                        // Create a string for $filter
-                        uri += "?$filter=" + primaryIdAttributeName + " eq " + referencedId;
-
+                        if (mtmrm.Entity1LogicalName == dataverseRecord.EntityLogicalName &&
+                            mtmrm.Entity2LogicalName == dataverseRecord.EntityLogicalName) { // ex. account N:N itself
+                            let primaryIdAttributeName1 = mtmrm.Entity1IntersectAttribute; // "accountidone"
+                            let primaryIdAttributeName2 = mtmrm.Entity2IntersectAttribute; // "accountidtwo"
+                            // Create a string for $filter
+                            uri += "?$filter=" + primaryIdAttributeName1 + " eq " + referencedId + " or " + primaryIdAttributeName2 + " eq " + referencedId;
+                        }
+                        else {
+                            let primaryIdAttributeName = (mtmrm.Entity1LogicalName == dataverseRecord.EntityLogicalName) ? mtmrm.Entity1IntersectAttribute : mtmrm.Entity2IntersectAttribute; // "opportunityid"
+                            // Create a string for $filter
+                            uri += "?$filter=" + primaryIdAttributeName + " eq " + referencedId;
+                        }
                         WebAPIHelper.request("GET", uri, null, true, DataverseAccessWebAPI.MaxPageSize, DataverseAccessWebAPI.WebAPIVersion)
                             .then((request) => {
                                 // Multiple records are returned
@@ -724,6 +732,7 @@ export class DataverseAccessWebAPI {
                                     }
                                     DataverseAccessWebAPI.cv.dataverseAccess.asyncRetrievedMTMRRetrievedECDic[mtmrm.SchemaName].push(record);
                                 }
+                                // Second, getting target record
                                 return DataverseAccessWebAPI.cv.dataverseAccess.retrieveMTMRTargetDataverseRecordsPromise(dataverseRecord, DataverseAccessWebAPI.cv.dataverseAccess.asyncRetrievedMTMRRetrievedECDic);
                             }).then(() => {
                                 resolve();
@@ -768,17 +777,30 @@ export class DataverseAccessWebAPI {
                 const mtmrm = DataverseAccessWebAPI.cv.ManyToManyRelationshipMetadataCache[schemaName];
                 const entityLogicalName = (mtmrm.Entity1LogicalName == sourceRecord.EntityLogicalName) ? mtmrm.Entity2LogicalName : mtmrm.Entity1LogicalName; // "competitor"
                 const entitySetName = DataverseAccessWebAPI.cv.EntityMetadataCacheKeyIsEntityLogicalName[entityLogicalName].EntitySetName; // "competitors"
-                const primaryIdAttributeName = (mtmrm.Entity1LogicalName == sourceRecord.EntityLogicalName) ? mtmrm.Entity2IntersectAttribute : mtmrm.Entity1IntersectAttribute; // "competitorid"
                 const primaryNameAttributeName = DataverseAccessWebAPI.cv.EntityMetadataCacheKeyIsEntityLogicalName[entityLogicalName].PrimaryNameAttribute; // "name"
                 const primaryImageAttributeName = DataverseAccessWebAPI.cv.EntityMetadataCacheKeyIsEntityLogicalName[entityLogicalName].PrimaryImageAttribute; // null or "entityimage"
-
-                const idArray: string[] = [];
                 const intersectEntityId: any = {}; // Dictionary with key being the Id of the TargetDataverse record and value being the Id of the IntersectEntity record
-                for (let j in recordArray) {
-                    const record = recordArray[j];
-                    const id = record.EntityRecord[primaryIdAttributeName];
-                    idArray.push(id);
-                    intersectEntityId[id] = record.getId(DataverseAccessWebAPI.cv);
+                const idArray: string[] = [];
+                let primaryIdAttributeName;
+                if (mtmrm.Entity1LogicalName == sourceRecord.EntityLogicalName &&
+                    mtmrm.Entity2LogicalName == sourceRecord.EntityLogicalName) { // ex. account N:N itself
+                    primaryIdAttributeName = DataverseAccessWebAPI.cv.EntityMetadataCacheKeyIsEntityLogicalName[sourceRecord.EntityLogicalName].PrimaryIdAttribute
+                    for (const record of recordArray) {
+                        const id1 = record.EntityRecord[mtmrm.Entity1IntersectAttribute];
+                        idArray.push(id1);
+                        intersectEntityId[id1] = record.getId(DataverseAccessWebAPI.cv);
+                        const id2 = record.EntityRecord[mtmrm.Entity2IntersectAttribute];
+                        idArray.push(id2);
+                        intersectEntityId[id2] = record.getId(DataverseAccessWebAPI.cv);
+                    }
+                }
+                else {
+                    primaryIdAttributeName = (mtmrm.Entity1LogicalName == sourceRecord.EntityLogicalName) ? mtmrm.Entity2IntersectAttribute : mtmrm.Entity1IntersectAttribute; // "competitorid"
+                    for (const record of recordArray) {
+                        const id = record.EntityRecord[primaryIdAttributeName];
+                        idArray.push(id);
+                        intersectEntityId[id] = record.getId(DataverseAccessWebAPI.cv);
+                    }
                 }
 
                 let uri = "/" + entitySetName;

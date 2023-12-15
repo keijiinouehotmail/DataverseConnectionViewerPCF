@@ -233,7 +233,7 @@ export class ConnectionViewer implements ComponentFramework.StandardControl<IInp
         state: ComponentFramework.Dictionary
     ): void {
         // this.notifyOutputChanged = notifyOutputChanged;
-        console.log("in init() of ConnectionViewer class");
+        // console.log("in init() of ConnectionViewer class v1.0.1.1");
 
         this._context = context;
         // In the new record creation screen, etc., it should be undefined.

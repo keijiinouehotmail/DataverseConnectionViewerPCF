@@ -15,7 +15,8 @@
     - Click "Save".
 1. Display the screen to customize the form of any table (for example, "Contact").
 1. Click "Switch to classic" on the menu to display the classic form editor.
-1. On the form, place any text field where you want to display this PCF control.
+    - ![SwitchToClassic](../Images/SwitchToClassic.png)
+1. On the classic form, place any text field where you want to display this PCF control.
     - Note that this field will not be changed by this PCF control.
     - Note that if you place the primary field, you will have trouble removing it from the form later, so it is recommended to place a field other than the primary field.
 1. Double-click the field to display the field property window.
